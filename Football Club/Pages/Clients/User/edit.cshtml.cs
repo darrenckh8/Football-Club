@@ -126,7 +126,8 @@ namespace Football_Club.Pages.Clients.User
             clientInfo.membership_tier = Request.Form["membership_tier"];
 
             if (clientInfo.id.Length == 0 || clientInfo.name.Length == 0 ||
-                clientInfo.email.Length == 0 || clientInfo.phone.Length == 0 || clientInfo.address.Length == 0)
+                clientInfo.email.Length == 0 || clientInfo.phone.Length == 0 || clientInfo.address.Length == 0
+                || clientInfo.club.Length == 0 || clientInfo.membership_tier.Length == 0)
             {
                 errorMessage = "All fields are required";
                 return;

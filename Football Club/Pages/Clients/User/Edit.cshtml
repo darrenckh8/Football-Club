@@ -33,10 +33,9 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Phone</label>
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="phone" value="@Model.clientInfo.phone">
+            <input type="text" class="form-control" name="phone" value="@Model.clientInfo.phone" pattern="[0-9]*" title="Please enter only numbers">
         </div>
     </div>
-
 
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Address</label>
