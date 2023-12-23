@@ -1,0 +1,32 @@
+﻿/* styles.css */
+
+/* Light mode styles */
+
+body {
+    background-color: #ffffff; /* Light background color */
+    color: #333333; /* Dark text color */
+}
+
+    /* Add more styles for light mode as needed */
+
+    /* Dark mode styles */
+
+    body.dark-mode {
+        background-color: #1a1a1a; /* Dark background color */
+        color: #ffffff; /* Light text color */
+    }
+
+/* Add more styles for dark mode as needed */
+
+        /* Override Bootstrap navbar styles for dark mode */
+        body.dark-mode .navbar {
+            background-color: #333333; /* Dark navbar background color */
+        }
+
+        body.dark-mode .navbar-dark .navbar-nav .nav-link {
+            color: #ffffff; /* Light text color for navbar links */
+        }
+
+        body.dark-mode .navbar-dark .navbar-toggler-icon {
+            background-color: #ffffff; /* Light color for the navbar toggler icon */
+        }

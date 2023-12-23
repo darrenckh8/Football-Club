@@ -1,0 +1,32 @@
+﻿@page
+@model Football_Club.Pages.Clubs.ClubCreateModel
+@{
+}
+
+<br>
+<h2>List of Clubs</h2>
+<a class='btn btn-primary btn-sm' href='/Clients/Clubs/ClubsCreate'>New Club</a>
+<table class="table" style="color: white;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Club Name</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var club in Model.ClubList)
+        {
+            <tr>
+                <td>@club.ClubID</td>
+                <td>@club.ClubName</td>
+                <td>@club.Location</td>
+                <td>
+                    <a class='btn btn-primary btn-sm' href='/Clients/Clubs/ClubsEdit?id=@club.ClubID'>Edit</a>
+                    <a class='btn btn-danger btn-sm' href='/Clients/Clubs/clubsDelete?id=@club.ClubID'>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

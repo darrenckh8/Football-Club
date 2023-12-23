@@ -1,0 +1,29 @@
+﻿@page
+@using System.Data.SqlClient
+
+@{
+    try
+    {
+        String id = Request.Query["id"];
+
+        String connectionString = "Data Source=DARREN-TOWER;Initial Catalog=football;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            String sql = "DELETE FROM MembershipTiers WHERE id=@id";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        // Handle exception, log, or display error message
+    }
+
+    Response.Redirect("/Clients/Tiers/tiersIndex");
+}

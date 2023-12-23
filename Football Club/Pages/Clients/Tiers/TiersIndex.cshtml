@@ -1,0 +1,32 @@
+﻿@page
+@model Football_Club.Pages.Clients.Tiers.TiersIndexModel
+@{
+}
+
+<br>
+<h2>List of Membership Tiers</h2>
+<a class='btn btn-primary btn-sm' href='/Clients/Tiers/TiersCreate'>New Tier</a>
+<table class="table" style="color: white;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tier Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tier in Model.ListTiers)
+        {
+            <tr>
+                <td>@tier.ID</td>
+                <td>@tier.TierName</td>
+                <td>@tier.Description</td>
+                <td>
+                    <a class='btn btn-primary btn-sm' href='/Clients/Tiers/TiersEdit?id=@tier.ID'>Edit</a>
+                    <a class='btn btn-danger btn-sm' href='/Clients/Tiers/TiersDelete?id=@tier.ID'>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

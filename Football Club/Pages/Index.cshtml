@@ -1,0 +1,86 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<canvas id="myChart" width="400" height="95"></canvas>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.labels)), // Use dynamic labels from IndexModel
+            datasets: [{
+                label: 'Number of Users',
+                data: @Html.Raw(Json.Serialize(Model.data)), // Use dynamic data from IndexModel
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'white',
+                        precision: 0,
+                        stepSize: 1
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
+<style>
+    .carousel-inner {
+        height: 60vh; 
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+<div id="carouselExample" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://media.cnn.com/api/v1/images/stellar/prod/231213105046-03-manchester-united-121223.jpg?c=16x9&q=h_833,w_1480,c_fill" class="d-block w-100" alt="Slide 1">
+        </div>
+        <div class="carousel-item">
+            <img src="https://assets.goal.com/v3/assets/bltcc7a7ffd2fbf71f5/blta32d008a6695f236/657997605cfb1f040ab55e50/GOAL_-_Blank_WEB_-_Facebook_(1).jpg?auto=webp&format=pjpg&width=3840&quality=60" class="d-block w-100" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+            <img src="https://i2-prod.mirror.co.uk/incoming/article13438434.ece/ALTERNATES/s1200/0_Liverpool-v-Paris-Saint-Germain-UEFA-Champions-League-Group-C.jpg" class="d-block w-100" alt="Slide 3">
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Activate the carousel
+        $('.carousel').carousel({
+            interval: 5000 // 5 seconds
+        });
+    </script>
+}
