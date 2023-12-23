@@ -1,3 +1,4 @@
+using Football_Club.Pages.Clubs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -17,6 +18,45 @@ namespace Football_Club.Pages.Clients.Tiers
 
         public IActionResult OnGet(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    string sql = "SELECT * FROM MembershipTiers WHERE ID=@id";
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                TierInfo = new EditTierInfo
+                                {
+                                    ID = reader.GetInt32(0),
+                                    TierName = reader.GetString(1),
+                                    Description = reader.GetString(2)
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+                return Page();
+            }
+
+            if (TierInfo == null)
+            {
+                return NotFound();
+            }
             // ... (existing OnGet code)
 
             return Page();
